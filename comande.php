@@ -7,7 +7,7 @@ include "database.php";
     <head>
         <title>Comande</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <!-- <link rel="stylesheet" href="style.css"> -->
     </head>
 
     <body>
@@ -17,6 +17,26 @@ include "database.php";
         $sql = "SELECT * from comanda";
         $result = $conn->query($sql);
         ?>
+
+        <form action="comande.php" method ="post">
+        <select name = "Filtri">
+            <option value = ""> Tutte </option>
+            <option value = "1"> Attive </option>
+            <option value = "0"> Concluse </option>
+        </select>
+        <input placeholder = "Cerca" type = "text"> </input>
+        </form>
+
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if ($_POST['Filtri'] != '')
+            {
+                $sql .= "AND stato=" . $_POST['filtro'];
+            }
+        }
+        ?>
+
         <table>
             <tr>
             <th>Numero del tavolo</th>
