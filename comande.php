@@ -13,10 +13,6 @@ include "database.php";
     <body>
     
     <div class = "comande">
-        <?php
-        $sql = "SELECT * from comanda";
-        $result = $conn->query($sql);
-        ?>
 
         <form action="comande.php" method ="post">
         <select name = "Filtri">
@@ -24,17 +20,22 @@ include "database.php";
             <option value = "1"> Attive </option>
             <option value = "0"> Concluse </option>
         </select>
-        <input placeholder = "Cerca" type = "text"> </input>
+        <input placeholder = "Cerca" type = "submit"> </input>
         </form>
 
+
         <?php
+        $sql = "SELECT * from comanda WHERE true ";
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             if ($_POST['Filtri'] != '')
             {
-                $sql .= "AND stato=" . $_POST['filtro'];
+                $sql .= "AND stato=" . $_POST['Filtri'];
             }
         }
+
+        $result = $conn->query($sql);
         ?>
 
         <table>
@@ -48,6 +49,7 @@ include "database.php";
             <th>Maggiori dettagli</th>
             </tr>
 
+            
             <?php foreach ($result as $row):
             echo "<tr>";
             echo "<td> $row[Numero_Tavolo] </td>";
@@ -63,7 +65,7 @@ include "database.php";
 
         </table>
 
-        <button id = "rimozione_comanda">RIMUOVI COMANDA</button>
+        <button id = "annulla_comanda">ANNULLA COMANDA</button>
         <button id = "aggiunta_comanda">AGGIUNGI COMANDA</button>
 
     </div>
