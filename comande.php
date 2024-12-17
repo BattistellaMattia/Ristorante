@@ -6,21 +6,23 @@ include "database.php";
 <html>
     <head>
         <title>Comande</title>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="style.css">    
     </head>
 
     <body>
     
     <div class = "comande">
 
+        <!-- Form per filtrare lo stato delle comande-->
         <form action="comande.php" method ="post">
         <select name = "Filtri">
             <option value = ""> Tutte </option>
             <option value = "1"> Attive </option>
             <option value = "0"> Concluse </option>
         </select>
-        <input placeholder = "Cerca" type = "submit"> </input>
+        <input type = "submit" value = "Cerca"> </input>
         </form>
 
 
@@ -38,6 +40,7 @@ include "database.php";
         $result = $conn->query($sql);
         ?>
 
+        <!-- Tabella per mostrare tutte le comande-->
         <table>
             <tr>
             <th>Numero del tavolo</th>
@@ -66,7 +69,10 @@ include "database.php";
         </table>
 
         <button id = "annulla_comanda">ANNULLA COMANDA</button>
+
+        <a href = "aggiuntaComandeTipologia.php" class= "action-button">
         <button id = "aggiunta_comanda">AGGIUNGI COMANDA</button>
+        </a>
 
     </div>
     </body>
