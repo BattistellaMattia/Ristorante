@@ -1,5 +1,5 @@
 <?php
 include "database.php";
 
-$sql = "INSERT into ";
+$sql = "INSERT into comande () VALUES ()";
 ?>

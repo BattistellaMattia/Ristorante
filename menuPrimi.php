@@ -13,7 +13,7 @@ include "database.php";
 
     <body>
         <?php
-        $sql = "SELECT ID_Piatto, Descrizione_Piatto, Descrizione_Ingredienti, ATTIVO, Costo, Prezzo FROM piatto WHERE true";
+        $sql = "SELECT ID_Piatto, Descrizione_Piatto, Descrizione_Ingredienti, ATTIVO, Costo, Prezzo FROM piatto WHERE true ";
         $sql .= "AND ID_Tipologia = 2";
         echo "$sql";
         ?>

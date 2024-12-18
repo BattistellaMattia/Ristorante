@@ -24,21 +24,46 @@ include "database.php";
             if ($result->num_rows > 0): ?>
 
                 <div class="tipologiaPulsanti">
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <form action="aggiuntaComandaPiatti.php" method="GET">
-                            <input type = "hidden" name = "ID_Tipologia" value = "<?php echo $row['ID_Tipologia']; ?>">
-                            <button type = "submit" class = "tipologiaPulsante">
-                                <?php echo $row["Descrizione_Tipologia"]; ?>
-                            </button>
-                        </form>
-                    <?php endwhile; ?>
+                    <button type = "submit" class = "tipologiaPulsante" id = "antipasto"> ANTIPASTI </button>
+                    <button type = "submit" class = "tipologiaPulsante" id = "primo"> PRIMI </button>
+                    <button type = "submit" class = "tipologiaPulsante" id = "secondo"> SECONDI </button>
+                    <button type = "submit" class = "tipologiaPulsante" id = "dolce"> DOLCI </button>
+                    <button type = "submit" class = "tipologiaPulsante" id = "bevanda"> BEVANDE </button>
+
                 </div>
 
             <?php else: ?>
                 <p> Non ci sono tipologie disponibili. </p>
             <?php endif; ?>
 
-            
+            <script>
+                const antipasto1 = document.getElementById("antipasto");
+                const primo1 = document.getElementById("primo");
+                const secondo1 = document.getElementById("secondo");
+                const dolce1 = document.getElementById("dolce");
+                const bevanda1 = document.getElementById("bevanda");
+
+                antipasto1.addEventListener("click", () =>
+                {
+                    window.location.href = "menuAntipasti.php";
+                });
+                primo1.addEventListener("click", () =>
+                {
+                    window.location.href = "menuAntipasti.php";
+                });
+                secondo1.addEventListener("click", () =>
+                {
+                    window.location.href = "menuAntipasti.php";
+                });
+                dolce1.addEventListener("click", () =>
+                {
+                    window.location.href = "menuAntipasti.php";
+                });
+                bevanda1.addEventListener("click", () =>
+                {
+                    window.location.href = "menuAntipasti.php";
+                });
+            </script>
     
             <a href = "comande.php" class = "pulsanteRitorno" > Torna Indietro </a>
         </div>
