@@ -1,3 +1,7 @@
+<?php
+include "database.php";
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,11 +13,11 @@
 
     <body>
         <?php
-        $sql = "SELECT Descrizione_Piatto, Descrizione_Ingredienti, ATTIVO, Costo, Prezzo FROM piatto WHERE true";
-        $sql .= "AND ID_Piatto = 1";
+        $sql = "SELECT ID_Piatto, Descrizione_Piatto, Descrizione_Ingredienti, ATTIVO, Costo, Prezzo FROM piatto WHERE true";
+        $sql .= "AND ID_Tipologia = 1";
         echo "$sql";
         ?>
 
-        
+
     </body>
 </html>

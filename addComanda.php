@@ -1,3 +1,5 @@
 <?php
-$sql = "INSERT into "
+include "database.php";
+
+$sql = "INSERT into ";
 ?>
