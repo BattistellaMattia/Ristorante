@@ -37,6 +37,8 @@ include "database.php";
             <?php else: ?>
                 <p> Non ci sono tipologie disponibili. </p>
             <?php endif; ?>
+
+            
     
             <a href = "comande.php" class = "pulsanteRitorno" > Torna Indietro </a>
         </div>

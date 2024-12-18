@@ -27,7 +27,7 @@ include "database.php";
 
 
         <?php
-        $sql = "SELECT * from comanda WHERE true ";
+        $sql = "SELECT ID_Comanda, Numero_Tavolo, Ora, Data, Stato, Numero_Coperti, CODICE_Cameriere from comanda WHERE true ";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
