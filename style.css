@@ -72,6 +72,7 @@ table
     font-size: 0.9rem;
     overflow-x: auto;
     display: block;
+    margin-bottom: 1rem;
 }
 
 table th,
@@ -80,7 +81,7 @@ table td
     border: 1px solid #ddd;
     padding: 0.5rem;
     text-align: center;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
 }
 
 table th 
@@ -134,11 +135,53 @@ button:hover
 /* -------------------------------------------- */
 
 /* Per renderlo responsive per i cellulari */
-@media (min-width: 768px) 
+@media (max-width: 768px) 
 {
+    table 
+    {
+        display: none; 
+    }
+
     .comande 
     {
-        max-width: 90%;
+        display: block;
+    }
+
+    .comande .row 
+    {
+        display: block;
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #dddddd;
+    }
+
+    .comande .row div 
+    {
+        margin-bottom: 0.5rem;
+    }
+
+    .comande .row div span 
+    {
+        font-weight: bold;
+    }
+
+    .comande .row .button-container 
+    {
+        text-align: center;
+    }
+
+    .comande .row button 
+    {
+        padding: 0.8em;
+        font-size: 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        width: auto;
+        margin: 0.5rem;
     }
 
     form 
@@ -153,15 +196,16 @@ button:hover
         width: 48%;
     }
 
-    table 
+    .creazioneComanda
     {
-        font-size: 1rem;
-    }
-
-    button 
-    {
-        width: auto;
-        margin: 0.5rem;
+        background-color: #FFFDD0; 
+        padding: 0.8em 1.5em; 
+        border: none; 
+        border-radius: 0.5rem;
+        cursor: pointer; 
+        font-size: 1rem; 
+        margin: 1rem auto; 
+        display: block;
     }
 }
 
@@ -177,10 +221,48 @@ button:hover
         font-size: 1.1rem;
     }
 
+    .comande .row 
+    {
+        display: none;
+    }
+
+    form 
+    {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+
     form select,
     form input[type="submit"] 
     {
-        width: 30%;
+        width: 50%;
+        font-size: 1rem;
+    }
+
+    #annulla_comanda,
+    #aggiunta_comanda
+    {
+        width: 100%;
+    }
+
+    a
+    {
+        width: 80%;
+    }
+
+    .creazioneComanda
+    {
+        background-color: #FFFDD0; 
+        padding: 0.8em 1.5em; 
+        border: none; 
+        border-radius: 0.5rem;
+        cursor: pointer; 
+        font-size: 1rem; 
+        margin: 1rem auto; 
+        display: block;
+        width: 80%;
     }
 }
 
@@ -304,16 +386,4 @@ button:hover
 }
 
 /* -------------------------------------------- */  
-
-.creazioneComanda
-{
-    background-color: #FFFDD0; 
-    padding: 0.8em 1.5em; 
-    border: none; 
-    border-radius: 0.5rem;
-    cursor: pointer; 
-    font-size: 1rem; 
-    margin: 1rem auto; 
-    display: block;
-}
 

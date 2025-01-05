@@ -40,7 +40,7 @@ include "database.php";
         $result = $conn->query($sql);
         ?>
 
-        <!-- Tabella per mostrare tutte le comande-->
+        <!-- Tabella per mostrare tutte le comande (desktop)-->
         <table>
             <tr>
             <th>Numero del tavolo</th>
@@ -52,21 +52,33 @@ include "database.php";
             <th>Maggiori dettagli</th>
             </tr>
 
-            
-            <?php foreach ($result as $row):
-            echo "<tr>";
-            echo "<td> $row[Numero_Tavolo] </td>";
-            echo "<td> $row[Ora] </td>";
-            echo "<td> $row[Data] </td>";
-            echo "<td> $row[Stato] </td>";
-            echo "<td> $row[Numero_Coperti] </td>";
-            echo "<td> $row[CODICE_Cameriere] </td>";
-            echo "<td> <button id = 'dettaglio_comanda'>DETTAGLI</button> </td>";
-            echo "</tr>";
-            endforeach;
-            ?>
-
+            <?php foreach ($result as $row): ?>
+            <tr>
+                <td><?php echo $row['Numero_Tavolo']; ?></td>
+                <td><?php echo $row['Ora']; ?></td>
+                <td><?php echo $row['Data']; ?></td>
+                <td><?php echo $row['Stato']; ?></td>
+                <td><?php echo $row['Numero_Coperti']; ?></td>
+                <td><?php echo $row['CODICE_Cameriere']; ?></td>
+                <td><button id="dettaglio_comanda">DETTAGLI</button></td>
+            </tr>
+            <?php endforeach; ?>
         </table>
+            
+        <!-- Se schermo piccolo le mostra come card -->
+        <?php foreach ($result as $row): ?>
+            <div class="row">
+               <div><span>Numero Tavolo:</span> <?php echo $row['Numero_Tavolo']; ?></div>
+               <div><span>Ora:</span> <?php echo $row['Ora']; ?></div>
+               <div><span>Data:</span> <?php echo $row['Data']; ?></div>
+               <div><span>Stato:</span> <?php echo $row['Stato']; ?></div>
+               <div><span>Numero Coperti:</span> <?php echo $row['Numero_Coperti']; ?></div>
+               <div><span>Codice Cameriere:</span> <?php echo $row['CODICE_Cameriere']; ?></div>
+               <div class="button-container">
+                   <button id="dettaglio_comanda">DETTAGLI</button>
+               </div>
+            </div>
+        <?php endforeach; ?>
 
         <button id = "annulla_comanda">ANNULLA COMANDA</button>
 
