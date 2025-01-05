@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 04, 2024 alle 10:53
+-- Creato il: Gen 05, 2025 alle 18:21
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -108,7 +108,12 @@ CREATE TABLE `piatto` (
 
 INSERT INTO `piatto` (`ID_Piatto`, `Descrizione_Piatto`, `Descrizione_Ingredienti`, `ATTIVO`, `Costo`, `Prezzo`, `ID_Tipologia`) VALUES
 (1, 'Ravioli cinesi al vapore', 'Farina 00, sale fino, maiale, cipollotto fresco, cavolo cappuccio, vino di riso, salsa di soia, pepe bianco.', 1, 2, 5, 1),
-(2, 'Polpettine di tonno e ricotta', 'Tonno sott\'olio, acciughe, pangrattato, uova, sale fino, ricotta vaccina, capperi sotto sale, prezzemolo, parmigiano reggiano DOP, pepe nero, olio di semi di arachide.', 1, 2, 5, 1);
+(2, 'Polpettine di tonno e ricotta', 'Tonno sott\'olio, acciughe, pangrattato, uova, sale fino, ricotta vaccina, capperi sotto sale, prezzemolo, parmigiano reggiano DOP, pepe nero, olio di semi di arachide.', 1, 2, 5, 1),
+(3, 'Acqua 1/2 L', 'Acqua', 1, 0.3, 1, 5),
+(4, 'Bibita analcolica bottiglia 1/2 L', 'Bibita a scelta tra le disponibili', 1, 0.5, 2, 5),
+(5, 'Tiramisù', 'Mascarpone, uova, zucchero, savoiardi, caffè', 1, 1.5, 4, 4),
+(6, 'Pasticcio al ragù', 'Latte, farina, burro, sale, carne, pomodoro, vino rosso, olio, cipolla, carota, pepe, sedano, sfoglie', 1, 3.23, 9, 2),
+(7, 'Milanese con patate fritte', 'Carne, patate, uova, sale, farina, pangrattato, burro', 1, 4.56, 12, 3);
 
 -- --------------------------------------------------------
 
@@ -196,7 +201,7 @@ ALTER TABLE `dettaglio_comanda`
 -- AUTO_INCREMENT per la tabella `piatto`
 --
 ALTER TABLE `piatto`
-  MODIFY `ID_Piatto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Piatto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `tipologia_piatto`

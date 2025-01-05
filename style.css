@@ -241,3 +241,79 @@ button:hover
 {
     background-color: #5a6268;
 }
+
+/* -------------------------------------------- */
+
+.menu-container 
+{
+    text-align: center;
+    padding: 1rem;
+}
+
+.menu-container h1 
+{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #4b85f0;
+    font-family: Bodoni MT Black;
+}
+
+.menu-grid 
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.menu-item 
+{
+    background-color: #fff;
+    border: 1px solid #b1a6a6;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    width: 30%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+
+.menu-item:hover 
+{
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item h2 
+{
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    margin: 0 auto;
+    color: #1e59c6;
+    font-family: Agency FB;
+}
+
+.menu-item p 
+{
+    font-family: 'Copperplgoth bd bt', sans-serif;
+    font-size: 1rem;
+    color: #162848;
+}
+
+/* -------------------------------------------- */  
+
+.creazioneComanda
+{
+    background-color: #FFFDD0; 
+    padding: 0.8em 1.5em; 
+    border: none; 
+    border-radius: 0.5rem;
+    cursor: pointer; 
+    font-size: 1rem; 
+    margin: 1rem auto; 
+    display: block;
+}
+

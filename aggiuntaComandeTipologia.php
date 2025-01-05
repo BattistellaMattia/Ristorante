@@ -49,19 +49,19 @@ include "database.php";
                 });
                 primo1.addEventListener("click", () =>
                 {
-                    window.location.href = "menuAntipasti.php";
+                    window.location.href = "menuPrimi.php";
                 });
                 secondo1.addEventListener("click", () =>
                 {
-                    window.location.href = "menuAntipasti.php";
+                    window.location.href = "menuSecondi.php";
                 });
                 dolce1.addEventListener("click", () =>
                 {
-                    window.location.href = "menuAntipasti.php";
+                    window.location.href = "menuDolci.php";
                 });
                 bevanda1.addEventListener("click", () =>
                 {
-                    window.location.href = "menuAntipasti.php";
+                    window.location.href = "menuBevande.php";
                 });
             </script>
     
