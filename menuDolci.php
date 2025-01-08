@@ -12,21 +12,22 @@ include "database.php";
     <script>
 
         //funzione per aggiornare il valore del contatore
-        function updateCounter(button, increment) 
+        function aggiornaContatore(button, incremento) 
         {
-            const counterElement = button.parentElement.querySelector('.counter');
-            let currentValue = parseInt(counterElement.textContent, 10);
-            if (increment) 
+            const elementoContatore = button.parentElement.querySelector('.contatore');
+            let valoreAttuale = parseInt(elementoContatore.textContent, 10);
+            if (incremento) 
             {
-                currentValue++;
-            } else 
+                valoreAttuale++;
+            } 
+            else 
             {
-                if (currentValue > 0) 
+                if (valoreAttuale > 0) 
                 {
-                    currentValue--;
+                    valoreAttuale--;
                 }
             }
-            counterElement.textContent = currentValue;
+            elementoContatore.textContent = valoreAttuale;
         }
         
     </script>
@@ -48,10 +49,10 @@ include "database.php";
                     echo "<div class='menu-item'>";
                     echo "<h2>" . htmlspecialchars($row['Descrizione_Piatto']) . "</h2>";
 
-                    echo "<div class='counter-container'>";
-                    echo "<button class='decrement' onclick='updateCounter(this, false)' style='background-color: red; color: white;'>-</button>";
-                    echo "<span class='counter'>0</span>";
-                    echo "<button class='increment' onclick='updateCounter(this, true)' style='background-color: green; color: white;'>+</button>";
+                    echo "<div class='container-contatore'>";
+                    echo "<button class='decremento' onclick='aggiornaContatore(this, false)' style='background-color: red; color: white;'>-</button>";
+                    echo "<span class='contatore'>0</span>";
+                    echo "<button class='incremento' onclick='aggiornaContatore(this, true)' style='background-color: green; color: white;'>+</button>";
                     echo "</div>";
 
                     echo "<p>€ " . number_format($row['Prezzo'], 2) . "</p>";
