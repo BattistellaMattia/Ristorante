@@ -64,7 +64,13 @@ include "database.php";
                     window.location.href = "menuBevande.php";
                 });
             </script>
-    
+
+            <form method="POST" action="aggiuntaComandaTipologia.php">
+                <label for="nota">Aggiungi una nota alla comanda:</label>
+                <textarea id="nota" name="nota" rows="4" cols="50" placeholder="Scrivi una nota qui..."></textarea>
+                <button type="submit" class="pulsanteFineComanda">FINE COMANDA</button>
+            </form>
+
             <a href = "comande.php" class = "pulsanteRitorno" > Torna Indietro </a>
         </div>
     </body>
