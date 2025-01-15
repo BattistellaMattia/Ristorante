@@ -40,10 +40,12 @@ include "database.php";
             <?php endif; ?>
 
             
-            <form method="POST" action="aggiuntaComandaTipologia.php">
-                <label for="nota">Aggiungi una nota alla comanda:</label>
-                <textarea id="nota" name="nota" rows="4" cols="50" placeholder="Scrivi una nota qui..."></textarea>
-                <button type="submit" class="pulsanteFineComanda">FINE COMANDA</button>
+            <form method = "POST" action = "addComanda.php">
+                <label for = "nota">Aggiungi una nota alla comanda:</label>
+                <textarea id = "nota" name = "nota" rows = "4" cols = "50" placeholder = "Scrivi una nota qui..."></textarea>
+                <a href = "addComanda.php">
+                <button type="submit" class = "pulsanteFineComanda">FINE COMANDA</button>
+                </a>
             </form>
 
             <a href = "comande.php" class = "pulsanteRitorno" > Torna Indietro </a>
