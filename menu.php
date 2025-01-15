@@ -5,7 +5,7 @@ include "database.php";
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PRIMI</title>
+    <title>MENU</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
@@ -35,12 +35,30 @@ include "database.php";
 
 <body>
     <div class="menu-container">
-        <h1>Menu Primi</h1>
+
+
+        <?php //inserimento del titolo <h1> con il nome della tipologia
+
+        $id_tipologia = $_POST['ID_Tipologia'];
+
+        $sql2 = "SELECT Descrizione_Tipologia
+                FROM tipologia_piatto
+                WHERE ID_Tipologia = $id_tipologia";
+        
+        $result2 = $conn->query($sql2);
+
+        while ($row = $result2->fetch_assoc()) 
+        {
+           echo "<h1>Menu " . $row['Descrizione_Tipologia'] . "</h1>";
+        }
+        ?>
+
+
         <div class="menu-grid">
-            <?php
+            <?php //inserimento dei piatti di una determinata tipologia
             $sql = "SELECT Descrizione_Piatto, Prezzo 
                     FROM piatto 
-                    WHERE ID_Tipologia = 2 AND ATTIVO = 1";
+                    WHERE ID_Tipologia = $id_tipologia AND ATTIVO = 1";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) 
@@ -58,7 +76,8 @@ include "database.php";
                     echo "<p>€ " . number_format($row['Prezzo'], 2) . "</p>";
                     echo "</div>";
                 }
-            } else 
+            } 
+            else //se non sono presenti piatti con questo ID
             {
                 echo "<p>Nessun piatto disponibile.</p>";
             }
