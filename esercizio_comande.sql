@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 05, 2025 alle 18:21
+-- Creato il: Gen 19, 2025 alle 19:30
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -85,6 +85,13 @@ CREATE TABLE `dettaglio_comanda` (
   `ID_Piatto` int(11) NOT NULL,
   `ID_Comanda` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dump dei dati per la tabella `dettaglio_comanda`
+--
+
+INSERT INTO `dettaglio_comanda` (`ID_Dettaglio`, `Nota`, `Stato`, `Costo`, `Prezzo`, `Quantita`, `Numero_Uscita`, `ID_Piatto`, `ID_Comanda`) VALUES
+(1, 'La milanese deve essere senza patatine fritte.', 1, 4.56, 12, 1, 1, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -189,13 +196,13 @@ ALTER TABLE `cameriere`
 -- AUTO_INCREMENT per la tabella `comanda`
 --
 ALTER TABLE `comanda`
-  MODIFY `ID_Comanda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Comanda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `dettaglio_comanda`
 --
 ALTER TABLE `dettaglio_comanda`
-  MODIFY `ID_Dettaglio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Dettaglio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `piatto`

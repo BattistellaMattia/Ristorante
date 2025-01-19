@@ -1,3 +1,5 @@
+<!-- Battistella Mattia 5IA - OrderFlow by BEM -->
+
 <?php
 include "database.php";
 ?>
@@ -24,13 +26,16 @@ include "database.php";
             //se esistono delle tipologia di piatti
             if ($result->num_rows > 0): ?>
 
-                <!-- creazione dei pulsanti con i nomi di tipologia che porteranno al file menu.php con il metodo POST -->
+                <!-- creazione dei pulsanti con i nomi di tipologia che porteranno al file 'menu.php' con il metodo POST -->
                 <div class="tipologiaPulsanti">
-                    <form method="POST" action="menu.php">
+                    <form method = "POST" action = "menu.php">
+
+                        <!-- il '< ?=' sarebbe un '< ?php echo $ ?>' -->
                         <?php while($row = $result->fetch_assoc()): ?>
-                            <button type="submit" name="ID_Tipologia" value="<?= $row['ID_Tipologia'] ?>" class="tipologiaPulsante">
+                            <button type = "submit" name = "ID_Tipologia" value = "<?= $row['ID_Tipologia'] ?>" class = "tipologiaPulsante">
                                 <?= $row['Descrizione_Tipologia'] ?>
                             </button>
+
                         <?php endwhile; ?>
                     </form>
                 </div>
@@ -44,7 +49,7 @@ include "database.php";
                 <label for = "nota">Aggiungi una nota alla comanda:</label>
                 <textarea id = "nota" name = "nota" rows = "4" cols = "50" placeholder = "Scrivi una nota qui..."></textarea>
                 <a href = "addComanda.php">
-                <button type="submit" class = "pulsanteFineComanda">FINE COMANDA</button>
+                <button type = "submit" class = "pulsanteFineComanda"> FINE COMANDA </button>
                 </a>
             </form>
 

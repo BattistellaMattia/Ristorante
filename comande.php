@@ -1,3 +1,5 @@
+<!-- Battistella Mattia 5IA - OrderFlow by BEM -->
+
 <?php
 include "database.php";
 ?>
@@ -27,7 +29,9 @@ include "database.php";
 
 
         <?php
-        $sql = "SELECT ID_Comanda, Numero_Tavolo, Ora, Data, Stato, Numero_Coperti, CODICE_Cameriere from comanda WHERE true ";
+        $sql = "SELECT ID_Comanda, Numero_Tavolo, Ora, Data, Stato, Numero_Coperti, CODICE_Cameriere 
+                FROM comanda 
+                WHERE true ";
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
@@ -60,7 +64,12 @@ include "database.php";
                 <td><?php echo $row['Stato']; ?></td>
                 <td><?php echo $row['Numero_Coperti']; ?></td>
                 <td><?php echo $row['CODICE_Cameriere']; ?></td>
-                <td><button id="dettaglio_comanda">DETTAGLI</button></td>
+                
+                <td>
+                    <form method = "POST" action = "dettaglioComande.php">
+                    <button type = "submit" name = "ID_Comanda" value = "<?= $row['ID_Comanda'] ?>" id="dettaglio_comanda">DETTAGLI</button>
+                    </form>
+                </td>
             </tr>
             <?php endforeach; ?>
         </table>
@@ -68,20 +77,26 @@ include "database.php";
         <!-- Se schermo piccolo le mostra come card -->
         <?php foreach ($result as $row): ?>
             <div class="row">
+
                <div><span>Numero Tavolo:</span> <?php echo $row['Numero_Tavolo']; ?></div>
                <div><span>Ora:</span> <?php echo $row['Ora']; ?></div>
                <div><span>Data:</span> <?php echo $row['Data']; ?></div>
                <div><span>Stato:</span> <?php echo $row['Stato']; ?></div>
                <div><span>Numero Coperti:</span> <?php echo $row['Numero_Coperti']; ?></div>
                <div><span>Codice Cameriere:</span> <?php echo $row['CODICE_Cameriere']; ?></div>
+
                <div class="button-container">
-                   <button id="dettaglio_comanda">DETTAGLI</button>
+                <form method = "POST" action = "dettaglioComande.php">
+                    <button type = "submit" name = "ID_Comanda" value = "<?= $row['ID_Comanda'] ?>" id="dettaglio_comanda">DETTAGLI</button>
+                </form>
                </div>
+
             </div>
         <?php endforeach; ?>
 
         <button id = "annulla_comanda">ANNULLA COMANDA</button>
 
+        <!-- pulsante che apre la pagina 'aggiuntaComandeTipologia' per iniziare a creare una nuova comanda -->
         <a href = "aggiuntaComandeTipologia.php" class= "action-button">
         <button id = "aggiunta_comanda">AGGIUNGI COMANDA</button>
         </a>

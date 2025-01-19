@@ -1,3 +1,5 @@
+<!-- Battistella Mattia 5IA - OrderFlow by BEM -->
+
 <?php
 include "database.php";
 ?>
@@ -89,4 +91,9 @@ include "database.php";
 
     </div>
 </body>
+
+    <?php
+    $conn -> close();
+    ?>
+    
 </html>
