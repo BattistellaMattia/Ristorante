@@ -28,6 +28,14 @@ include "database.php";
         </form>
 
 
+        <button id = "annulla_comanda">ANNULLA COMANDA</button>
+
+        <!-- pulsante che apre la pagina 'aggiuntaComandeTipologia' per iniziare a creare una nuova comanda -->
+        <a href = "aggiuntaComandeTipologia.php" class= "action-button">
+        <button id = "aggiunta_comanda">AGGIUNGI COMANDA</button>
+        </a>
+
+
         <?php
         $sql = "SELECT ID_Comanda, Numero_Tavolo, Ora, Data, Stato, Numero_Coperti, CODICE_Cameriere 
                 FROM comanda 
@@ -77,29 +85,26 @@ include "database.php";
         <!-- Se schermo piccolo le mostra come card -->
         <?php foreach ($result as $row): ?>
             <div class="row">
-
-               <div><span>Numero Tavolo:</span> <?php echo $row['Numero_Tavolo']; ?></div>
-               <div><span>Ora:</span> <?php echo $row['Ora']; ?></div>
-               <div><span>Data:</span> <?php echo $row['Data']; ?></div>
-               <div><span>Stato:</span> <?php echo $row['Stato']; ?></div>
-               <div><span>Numero Coperti:</span> <?php echo $row['Numero_Coperti']; ?></div>
-               <div><span>Codice Cameriere:</span> <?php echo $row['CODICE_Cameriere']; ?></div>
-
-               <div class="button-container">
-                <form method = "POST" action = "dettaglioComande.php">
-                    <button type = "submit" name = "ID_Comanda" value = "<?= $row['ID_Comanda'] ?>" id="dettaglio_comanda">DETTAGLI</button>
-                </form>
-               </div>
-
+                <div class="row-item">
+                    <div class="item1"> <span>Numero Tavolo:</span> <?php echo $row['Numero_Tavolo']; ?> </div>
+                    <div class="item2"> <span>Numero Coperti:</span> <?php echo $row['Numero_Coperti']; ?> </div>
+                 </div>
+             <div class="row-item">
+                   <div class="item1"> <span>Ora:</span> <?php echo $row['Ora']; ?> </div>
+                   <div class="item2"> <span>Data:</span> <?php echo $row['Data']; ?> </div>
+             </div>
+            <div class="row-item">
+                    <div class="item1"> <span>Codice Cameriere:</span> <?php echo $row['CODICE_Cameriere']; ?> </div>
+                    <div class="item2"> <span>Stato:</span> <?php echo $row['Stato']; ?> </div>
             </div>
+
+            <div class="button-container">
+                <form method="POST" action="dettaglioComande.php">
+                    <button type="submit" name="ID_Comanda" value="<?= $row['ID_Comanda'] ?>" id="dettaglio_comanda">DETTAGLI</button>
+                </form>
+            </div>
+        </div>
         <?php endforeach; ?>
-
-        <button id = "annulla_comanda">ANNULLA COMANDA</button>
-
-        <!-- pulsante che apre la pagina 'aggiuntaComandeTipologia' per iniziare a creare una nuova comanda -->
-        <a href = "aggiuntaComandeTipologia.php" class= "action-button">
-        <button id = "aggiunta_comanda">AGGIUNGI COMANDA</button>
-        </a>
 
     </div>
     </body>

@@ -15,7 +15,7 @@ include "database.php";
 
     <body>
 
-
+    <div class = "comande">
         <?php
             $id_comanda = $_POST['ID_Comanda'];
 
@@ -40,8 +40,8 @@ include "database.php";
             <tr>
                 <td><?php echo $row['Nota']; ?></td>
                 <td><?php echo $row['Stato']; ?></td>
-                <td><?php echo $row['Costo']; ?></td>
-                <td><?php echo $row['Prezzo']; ?></td>
+                <td><?php echo number_format($row['Costo'], 2, ',', '.'); ?> €</td>
+                <td><?php echo number_format($row['Prezzo'], 2, ',', '.'); ?> €</td>
                 <td><?php echo $row['Quantita']; ?></td>
                 <td><?php echo $row['Numero_Uscita']; ?></td>
             </tr>
@@ -53,14 +53,16 @@ include "database.php";
             <div class="row">
                 <div><span>Nota:</span> <?php echo $row['Nota']; ?></div>
                 <div><span>Stato:</span> <?php echo $row['Stato']; ?></div>
-                <div><span>Costo:</span> <?php echo $row['Costo']; ?></div>
-                <div><span>Prezzo:</span> <?php echo $row['Prezzo']; ?></div>
+                <div><span>Costo:</span> <?php echo number_format($row['Costo'], 2, ',', '.'); ?> €</div>
+                <div><span>Prezzo:</span> <?php echo number_format($row['Prezzo'], 2, ',', '.'); ?> €</div>
                 <div><span>Quantita:</span> <?php echo $row['Quantita']; ?></div>
                 <div><span>Numero di uscita:</span> <?php echo $row['Numero_Uscita']; ?></div>
             </div>
         <?php endforeach; ?>
 
         <a href = "comande.php" class = "pulsanteRitorno" > Torna Indietro </a>
+
+        </div>
     </body>
 
     <?php

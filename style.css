@@ -236,17 +236,32 @@ button:hover
 
     .comande .row div 
     {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%;
         margin-bottom: 0.5rem;
     }
+
+    .comande .row .item1
+    {
+        display: inline-flex;
+        justify-content: left;
+    } 
+
+    .comande .row .item2
+    {
+        display: inline-flex;
+        justify-content: right;
+    } 
 
     .comande .row div span 
     {
         font-weight: bold;
     }
 
-    .comande .row .button-container 
+    .comande .row .button-container button
     {
-        text-align: center;
+        margin-bottom: -2rem;
     }
 
     .comande .row button 
@@ -441,8 +456,8 @@ button:hover
 
 .menu-container h1 
 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     color: #4b85f0;
     font-family: Bodoni MT Black;
 }
@@ -461,28 +476,52 @@ button:hover
     border: 1px solid #b1a6a6;
     border-radius: 0.5rem;
     padding: 1rem;
-    width: 30%;
+    width: 90%; 
+    max-width: 800px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    text-align: center;
-}
-
-.menu-item:hover 
-{
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .menu-item h2 
 {
-    font-size: 1.2rem;
+    font-size: 1.3rem; 
     margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
     text-align: center;
     margin: 0 auto;
     color: #1e59c6;
+    flex: 1;    
     font-family: Agency FB;
+}
+
+.container-contatore
+{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.container-contatore button 
+{
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.container-contatore .contatore 
+{
+    font-size: 1rem;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
 }
 
 .menu-item p 
@@ -490,6 +529,54 @@ button:hover
     font-family: 'Copperplgoth bd bt', sans-serif;
     font-size: 1rem;
     color: #162848;
+    margin-left: 1rem;
+    display: inline-flex;
+    align-items: center; 
+}
+
+.menu-item p span 
+{
+    margin-left: 0.2rem; 
+}
+
+.creazioneComanda 
+{
+    width: auto;
+    margin: 1rem auto; 
+    padding: 1rem 1.5rem; 
+    font-size: 1.1rem; 
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold; 
+    background-color: #FFFDD0;    
+    color: #3f0909; 
+    border: none; 
+    border-radius: 0.5rem; 
+    cursor: pointer;
+}
+
+.creazioneComanda:hover 
+{
+    background-color: #218838;
+}
+
+.pulsanteRitorno 
+{
+    width: auto;
+    margin: 1rem auto 2rem; 
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #6c757d; 
+    color: white;
+    border-radius: 0.5rem; 
+    cursor: pointer;
+}
+
+.pulsanteRitorno:hover 
+{
+    background-color: #5a6268; 
 }
 
 /* -------------------------------------------- */  

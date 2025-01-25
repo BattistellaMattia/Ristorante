@@ -55,6 +55,9 @@ include "database.php";
         }
         ?>
 
+        <button class = "creazioneComanda">AGGIUNGI ALLA COMANDA</button>
+        <a href="aggiuntaComandeTipologia.php" class="pulsanteRitorno">Torna Indietro</a>
+
 
         <div class="menu-grid">
             <?php //inserimento dei piatti di una determinata tipologia
@@ -65,7 +68,8 @@ include "database.php";
 
             if ($result->num_rows > 0) 
             {
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) 
+                {
                     echo "<div class='menu-item'>";
                     echo "<h2>" . htmlspecialchars($row['Descrizione_Piatto']) . "</h2>";
 
@@ -86,9 +90,6 @@ include "database.php";
             ?>
 
         </div>
-        <button class = "creazioneComanda">AGGIUNGI ALLA COMANDA</button>
-        <a href="aggiuntaComandeTipologia.php" class="pulsanteRitorno">Torna Indietro</a>
-
     </div>
 </body>
 
