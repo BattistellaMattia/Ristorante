@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 19, 2025 alle 19:30
+-- Creato il: Feb 02, 2025 alle 20:23
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -32,17 +32,18 @@ CREATE TABLE `cameriere` (
   `Nome` varchar(20) NOT NULL,
   `Cognome` varchar(30) NOT NULL,
   `Username` varchar(30) NOT NULL,
-  `Password` varchar(50) NOT NULL
+  `Password` varchar(50) NOT NULL,
+  `PassID` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dump dei dati per la tabella `cameriere`
 --
 
-INSERT INTO `cameriere` (`CODICE_Cameriere`, `Nome`, `Cognome`, `Username`, `Password`) VALUES
-(1, 'Mattia', 'Battistella', 'Batti', 'Mattia06'),
-(2, 'Diego', 'Moras', 'Dmo', 'Diego06'),
-(3, 'Eduard', 'Giugiuc', 'Pepino', 'Eduard06');
+INSERT INTO `cameriere` (`CODICE_Cameriere`, `Nome`, `Cognome`, `Username`, `Password`, `PassID`) VALUES
+(1, 'Mattia', 'Battistella', 'Batti', 'Mattia06', 'cad8e1e309aa3d54a9c319aa7b17528f9b8ffb62adbdbad910b2f35ef6587c7a'),
+(2, 'Diego', 'Moras', 'Dmo', 'Diego06', 'aca7371420813912e81d98e72edd91fa5783243df53d725c0da43335aabd1c48'),
+(3, 'Eduard', 'Giugiuc', 'Pepino', 'Eduard06', '3e76a1f9f23e50f579f991783359d6c252b6ef5585ea3bdec3b5289f42fd82f3');
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,8 @@ CREATE TABLE `comanda` (
 
 INSERT INTO `comanda` (`ID_Comanda`, `Numero_Tavolo`, `Ora`, `Data`, `Stato`, `Numero_Coperti`, `CODICE_Cameriere`) VALUES
 (1, 1, '20:03:00', '2024-05-25', 1, 3, 1),
-(2, 4, '18:36:23', '2024-12-04', 0, 7, 1);
+(2, 4, '18:36:23', '2024-12-04', 0, 7, 1),
+(5, 5, '20:13:08', '2025-01-19', 1, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,7 @@ CREATE TABLE `piatto` (
 
 INSERT INTO `piatto` (`ID_Piatto`, `Descrizione_Piatto`, `Descrizione_Ingredienti`, `ATTIVO`, `Costo`, `Prezzo`, `ID_Tipologia`) VALUES
 (1, 'Ravioli cinesi al vapore', 'Farina 00, sale fino, maiale, cipollotto fresco, cavolo cappuccio, vino di riso, salsa di soia, pepe bianco.', 1, 2, 5, 1),
-(2, 'Polpettine di tonno e ricotta', 'Tonno sott\'olio, acciughe, pangrattato, uova, sale fino, ricotta vaccina, capperi sotto sale, prezzemolo, parmigiano reggiano DOP, pepe nero, olio di semi di arachide.', 1, 2, 5, 1),
+(2, 'Polpette di tonno e ricotta', 'Tonno sott\'olio, acciughe, pangrattato, uova, sale fino, ricotta vaccina, capperi sotto sale, prezzemolo, parmigiano reggiano DOP, pepe nero, olio di semi di arachide.', 1, 2, 5, 1),
 (3, 'Acqua 1/2 L', 'Acqua', 1, 0.3, 1, 5),
 (4, 'Bibita analcolica bottiglia 1/2 L', 'Bibita a scelta tra le disponibili', 1, 0.5, 2, 5),
 (5, 'Tiramisù', 'Mascarpone, uova, zucchero, savoiardi, caffè', 1, 1.5, 4, 4),
@@ -196,7 +198,7 @@ ALTER TABLE `cameriere`
 -- AUTO_INCREMENT per la tabella `comanda`
 --
 ALTER TABLE `comanda`
-  MODIFY `ID_Comanda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_Comanda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `dettaglio_comanda`

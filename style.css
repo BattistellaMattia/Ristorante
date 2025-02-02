@@ -329,6 +329,26 @@ button:hover
         margin: 1rem auto; 
         display: block;
     }
+
+    .login-titolo 
+    {
+        font-size: 2.5rem;
+    }
+
+    .login-label 
+    {
+        font-size: 1.3rem;
+    }
+
+    .login-input 
+    {
+        font-size: 1.1rem;
+    }
+
+    .login-pulsante 
+    {
+        font-size: 1.3rem;
+    }
 }
 
 @media (min-width: 1024px) 
@@ -581,3 +601,72 @@ button:hover
 
 /* -------------------------------------------- */  
 
+.login-container 
+{
+    width: 100vw;
+    height: 100vh;
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #4b85f0, #162848); /* Effetto sfumato */
+    color: white;
+}
+
+.login-titolo 
+{
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.login-form 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    max-width: 400px;
+}
+
+.login-label 
+{
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.login-input 
+{
+    width: 95%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 2px solid #fff;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.login-pulsante 
+{
+    width: 90%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: #249db5;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-pulsante:hover 
+{
+    background-color: #218838;
+}
+
+/* -------------------------------------------- */  
