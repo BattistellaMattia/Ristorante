@@ -2,6 +2,7 @@
 
 <?php
 include "database.php";
+include "controlloLogin.php";
 ?>
 
 <!DOCTYPE html>
