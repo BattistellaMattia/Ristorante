@@ -47,8 +47,13 @@ include "controlloLogin.php";
 
             
             <form method = "POST" action = "addComanda.php">
+
+                <label for="recap">Recap dei piatti aggiunti:</label>
+                <textarea id="recap" name="recap" rows="3" cols="50" readonly><?php echo isset($_GET['recap']) ? htmlspecialchars($_GET['recap']) : ''; ?></textarea>
+
                 <label for = "nota">Aggiungi una nota alla comanda:</label>
-                <textarea id = "nota" name = "nota" rows = "4" cols = "50" placeholder = "Scrivi una nota qui..."></textarea>
+                <textarea id = "nota" name = "nota" rows = "2" cols = "50" placeholder = "Scrivi una nota qui..."></textarea>
+                
                 <a href = "addComanda.php">
                 <button type = "submit" class = "pulsanteFineComanda"> FINE COMANDA </button>
                 </a>
