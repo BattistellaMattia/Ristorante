@@ -19,6 +19,32 @@ body
 
 /* -------------------------------------------- */
 
+/* Stile per il pulsante di stato */
+.pulsante-stato 
+{
+    background: none;
+    border: 2px solid #333;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Per evidenziare il totale */
+tr.totale td 
+{
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.row.totale 
+{
+    background-color: #f0f0f0;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+/* -------------------------------------------- */
+
 /* Container */
 .comande {
     width: 100%;

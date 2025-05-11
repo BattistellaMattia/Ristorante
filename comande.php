@@ -57,7 +57,7 @@ include "controlloLogin.php";
             // Filtro per stato
             if (!empty($_POST['Filtri'])) 
             {
-                $sql .= " AND stato = " . $conn->real_escape_string($_POST['Filtri']);
+                $sql .= " AND Stato = " . $conn->real_escape_string($_POST['Filtri']);
             }
 
             // Filtro per data
@@ -98,8 +98,9 @@ include "controlloLogin.php";
                 <td><?php echo $row['CODICE_Cameriere']; ?></td>
                 
                 <td>
-                    <form method = "POST" action = "dettaglioComande.php">
-                    <button type = "submit" name = "ID_Comanda" value = "<?= $row['ID_Comanda'] ?>" id="dettaglio_comanda">DETTAGLI</button>
+                    <form method = "GET" action = "dettaglioComande.php">
+                        <input type = "hidden" name = "id" value = "<?= $row['ID_Comanda'] ?>">
+                        <button type = "submit" id = "dettaglio_comanda"> DETTAGLI </button>
                     </form>
                 </td>
             </tr>
@@ -122,9 +123,10 @@ include "controlloLogin.php";
                     <div class="item2"> <span>Stato:</span> <?php echo $row['Stato']; ?> </div>
             </div>
 
-            <div class="button-container">
-                <form method="POST" action="dettaglioComande.php">
-                    <button type="submit" name="ID_Comanda" value="<?= $row['ID_Comanda'] ?>" id="dettaglio_comanda">DETTAGLI</button>
+            <div class = "button-container">
+                <form method = "GET" action = "dettaglioComande.php">
+                    <input type = "hidden" name = "id" value = "<?= $row['ID_Comanda'] ?>">
+                    <button type = "submit" id = "dettaglio_comanda"> DETTAGLI </button>
                 </form>
             </div>
         </div>
