@@ -9,6 +9,7 @@ include "controlloLogin.php";
 //recupero i dati dal form di "aggiuntaComandeTipologia.php"
 $recap = isset($_POST['recap']) ? $_POST['recap'] : "";
 $nota = isset($_POST['nota']) ? $_POST['nota'] : "";
+$numero_uscita = isset($_POST['numero_uscita']) ? intval($_POST['numero_uscita']) : 1;
 
 
 //il recap è per esempio: "Ravioli cinesi al vapore - 2"
@@ -96,7 +97,7 @@ foreach($piatti as $piatto)
         
         //inserisco i dettagli nella tabella "dettaglio_comanda"
         $sqlInsertDettaglio = "INSERT INTO dettaglio_comanda (Nota, Stato, Costo, Prezzo, Quantita, Numero_Uscita, ID_Piatto, ID_Comanda)
-                               VALUES ('" . $conn->real_escape_string($nota) . "', 1, $costoTotale, $prezzoTotale, $quantita, 0, $idPiatto, $orderID)";
+                               VALUES ('" . $conn->real_escape_string($nota) . "', 1, $costoTotale, $prezzoTotale, $quantita, $numero_uscita, $idPiatto, $orderID)";
         if(!$conn->query($sqlInsertDettaglio)) 
         {
             die("Errore nell'inserimento del dettaglio della comanda: " . $conn->error);
