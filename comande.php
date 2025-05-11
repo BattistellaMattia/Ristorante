@@ -21,14 +21,21 @@ include "controlloLogin.php";
         <h2> Benvenuto, <?php echo $_SESSION['nome']; ?> ! </h2>
         <a href = "logout.php"> Logout </a>
 
-        <!-- Form per filtrare lo stato delle comande-->
-        <form action="comande.php" method ="post">
-        <select name = "Filtri">
-            <option value = ""> Tutte </option>
-            <option value = "1"> Attive </option>
-            <option value = "0"> Concluse </option>
-        </select>
-        <input type = "submit" value = "Cerca"> </input>
+        <!-- Form per filtrare lo stato e le date delle comande -->
+        <form action="comande.php" method="post">
+            <select name="Filtri">
+                <option value=""> Tutte </option>
+                <option value="1"> Attive </option>
+                <option value="0"> Concluse </option>
+            </select>
+
+            <label for="data_inizio">Da:</label>
+            <input type="date" id="data_inizio" name="data_inizio">
+
+            <label for="data_fine">A:</label>
+            <input type="date" id="data_fine" name="data_fine">
+
+            <input type="submit" value="Cerca">
         </form>
 
 
@@ -45,11 +52,24 @@ include "controlloLogin.php";
                 FROM comanda 
                 WHERE true ";
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') //real_escape_string serve per i caratteri speciali
         {
-            if ($_POST['Filtri'] != '')
+            // Filtro per stato
+            if (!empty($_POST['Filtri'])) 
             {
-                $sql .= "AND stato=" . $_POST['Filtri'];
+                $sql .= " AND stato = " . $conn->real_escape_string($_POST['Filtri']);
+            }
+
+            // Filtro per data
+            if (!empty($_POST['data_inizio'])) 
+            {
+                $data_inizio = $conn->real_escape_string($_POST['data_inizio']);
+                $sql .= " AND Data >= '$data_inizio'";
+            }
+            if (!empty($_POST['data_fine'])) 
+            {
+                $data_fine = $conn->real_escape_string($_POST['data_fine']);
+                $sql .= " AND Data <= '$data_fine'";
             }
         }
 
