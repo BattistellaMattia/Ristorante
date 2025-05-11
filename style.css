@@ -19,6 +19,26 @@ body
 
 /* -------------------------------------------- */
 
+/* Per il pulsante annulla */
+
+.pulsante-annulla 
+{
+    background-color: #ff4444;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.pulsante-annulla:hover 
+{
+    background-color: #cc0000;
+}
+
+/* -------------------------------------------- */
+
 /* Stile per il pulsante di stato */
 .pulsante-stato 
 {
@@ -217,12 +237,6 @@ button
     color: white;
 }
 
-#annulla_comanda 
-{
-    background-color: #dc3545;
-    color: white;
-}
-
 #aggiunta_comanda 
 {
     background-color: #17a2b8;
@@ -409,7 +423,6 @@ button:hover
         font-size: 1rem;
     }
 
-    #annulla_comanda,
     #aggiunta_comanda
     {
         width: 100%;

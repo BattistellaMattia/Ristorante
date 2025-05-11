@@ -11,6 +11,27 @@ if (!$id_comanda)
     die("ID comanda non valido.");
 }
 
+// Gestione eliminazione comanda
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_comanda'])) 
+{
+    // Elimino i dettagli della comanda
+    $sql_delete_dettagli = "DELETE FROM dettaglio_comanda WHERE ID_Comanda = $id_comanda";
+    if (!$conn->query($sql_delete_dettagli)) 
+    {
+        die("Errore nell'eliminazione dei dettagli: " . $conn->error);
+    }
+
+    // Elimino la comanda
+    $sql_delete_comanda = "DELETE FROM comanda WHERE ID_Comanda = $id_comanda";
+    if (!$conn->query($sql_delete_comanda)) 
+    {
+        die("Errore nell'eliminazione della comanda: " . $conn->error);
+    }
+
+    header("Location: comande.php");
+    exit();
+}
+
 // Gestione toggle stato
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['toggle_stato'])) 
 {
@@ -70,15 +91,21 @@ foreach ($result as $row)
             ?>
 
             <form method="POST" action="dettaglioComande.php?id=<?php echo $id_comanda; ?>">
-                <input type="hidden" name="id" value="<?php echo $id_comanda; ?>">
-                <button type="submit" name="toggle_stato" class="pulsante-stato">
+                <input type = "hidden" name = "id" value = "<?php echo $id_comanda; ?>">
+                <button type = "submit" name = "toggle_stato" class = "pulsante-stato">
                     Stato attuale: <?php echo ($stato_comanda == 1) ? '🟢 Attiva' : '🔴 Conclusa'; ?>
                 </button>
             </form>
 
+            <!-- Form per eliminare la comanda -->
+            <form method = "POST" action = "dettaglioComande.php?id=<?php echo $id_comanda; ?>" onsubmit="return confirm('Sei sicuro di voler rimuovere questa comanda?');">
+                <input type = "hidden" name = "delete_comanda" value = "1">
+                <button type = "submit" class = "pulsante-annulla"> ANNULLA COMANDA </button>
+            </form>
+
         </div>
 
-        <!-- Tabella per mostrare tutte le comande (desktop)-->
+        <!-- Tabella per mostrare i dettagli (desktop)-->
         <table>
             <tr>
                 <th>Piatto</th>

@@ -38,9 +38,6 @@ include "controlloLogin.php";
             <input type="submit" value="Cerca">
         </form>
 
-
-        <button id = "annulla_comanda">ANNULLA COMANDA</button>
-
         <!-- pulsante che apre la pagina 'aggiuntaComandeTipologia' per iniziare a creare una nuova comanda -->
         <a href = "aggiuntaComandeTipologia.php" class= "action-button">
         <button id = "aggiunta_comanda">AGGIUNGI COMANDA</button>
