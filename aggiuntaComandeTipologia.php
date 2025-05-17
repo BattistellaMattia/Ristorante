@@ -53,6 +53,9 @@ include "controlloLogin.php";
 
                 <label for = "nota">Aggiungi una nota alla comanda:</label>
                 <textarea id = "nota" name = "nota" rows = "2" cols = "50" placeholder = "Scrivi una nota qui..."></textarea>
+
+                <label for="numero_tavolo">Numero del tavolo:</label>
+                <input type="number" id="numero_tavolo" name="numero_tavolo" min="1" placeholder="Inserisci il numero del tavolo" required>
                 
                 <label for="numero_uscita">Numero di uscita:</label>
                 <input type="number" id="numero_uscita" name="numero_uscita" min="1" placeholder="Inserisci numero di uscita" required>

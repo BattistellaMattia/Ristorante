@@ -10,6 +10,7 @@ include "controlloLogin.php";
 $recap = isset($_POST['recap']) ? $_POST['recap'] : "";
 $nota = isset($_POST['nota']) ? $_POST['nota'] : "";
 $numero_uscita = isset($_POST['numero_uscita']) ? intval($_POST['numero_uscita']) : 1;
+$numero_tavolo = isset($_POST['numero_tavolo']) ? intval($_POST['numero_tavolo']) : 0;
 
 
 //il recap è per esempio: "Ravioli cinesi al vapore - 2"
@@ -60,9 +61,9 @@ else
 
 //inserimento nella comanda
 $sqlInsertComanda = "INSERT INTO comanda (Numero_Tavolo, Ora, Data, Stato, Numero_Coperti, CODICE_Cameriere)
-                     VALUES (5, CURRENT_TIME(), CURRENT_DATE(), 1, $totalePiatti, $codiceCameriere)";
+                     VALUES ($numero_tavolo, CURRENT_TIME(), CURRENT_DATE(), 1, $totalePiatti, $codiceCameriere)";
 
-if(!$conn->query($sqlInsertComanda)) 
+if(!$conn->query($sqlInsertComanda))
 {
     die("Errore nell'inserimento della comanda: " . $conn->error);
 }
