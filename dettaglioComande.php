@@ -54,6 +54,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['toggle_stato']))
     }
 }
 
+// Recupero i dettagli della comanda
+$sql_comanda = "SELECT c.ID_Comanda, c.Numero_Tavolo, c.Ora, c.Data, c.Stato, c.Numero_Coperti, cm.Nome, cm.Cognome 
+                FROM comanda c
+                LEFT JOIN cameriere cm ON c.CODICE_Cameriere = cm.CODICE_Cameriere
+                WHERE c.ID_Comanda = $id_comanda";
+$result_comanda = $conn->query($sql_comanda);
+$comanda_info = ($result_comanda && $result_comanda->num_rows > 0) ? $result_comanda->fetch_assoc() : null;
+
+if (!$comanda_info) 
+{
+    die("Comanda non trovata.");
+}
+
 // Query per i dettagli della comanda
 $sql = "SELECT dc.ID_Dettaglio, dc.Nota, dc.Stato, dc.Costo, dc.Prezzo, dc.Quantita, dc.Numero_Uscita, p.Descrizione_Piatto 
         FROM dettaglio_comanda dc
@@ -63,10 +76,26 @@ $result = $conn->query($sql);
 
 // Calcolo il totale del prezzo
 $totale_prezzo = 0;
-foreach ($result as $row) 
+$dettagli = [];
+while ($row = $result->fetch_assoc()) 
 {
     $totale_prezzo += $row['Prezzo'];
+    $dettagli[] = $row;
 }
+
+// Raggruppo i dettagli per numero di uscita
+$dettagli_per_uscita = [];
+foreach ($dettagli as $dettaglio) 
+{
+    $uscita = $dettaglio['Numero_Uscita'];
+    if (!isset($dettagli_per_uscita[$uscita])) 
+    {
+        $dettagli_per_uscita[$uscita] = [];
+    }
+    $dettagli_per_uscita[$uscita][] = $dettaglio;
+}
+ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
+
 ?>
 
 <!DOCTYPE html>

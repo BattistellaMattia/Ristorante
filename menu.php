@@ -32,6 +32,17 @@ if(isset($_POST['aggiungi']))
         }
     }
 
+    if (!empty($recap)) 
+    {
+        $_SESSION['recap_comanda'] .= $recap;
+        header("Location: aggiuntaComandeTipologia.php");
+        exit();
+    } 
+    else 
+    {
+        $error_message = "Nessun piatto selezionato. Seleziona almeno un piatto.";
+    }
+
     header("Location: aggiuntaComandeTipologia.php?recap=" . urlencode($recap));
     exit();
 }

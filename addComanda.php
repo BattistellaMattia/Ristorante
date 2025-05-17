@@ -59,6 +59,12 @@ else
 
 //-------------------------------------
 
+// Verifico se ci sono piatti selezionati
+if (empty($piatti)) 
+{
+    die("Nessun piatto selezionato. Impossibile creare la comanda.");
+}
+
 //inserimento nella comanda
 $sqlInsertComanda = "INSERT INTO comanda (Numero_Tavolo, Ora, Data, Stato, Numero_Coperti, CODICE_Cameriere)
                      VALUES ($numero_tavolo, CURRENT_TIME(), CURRENT_DATE(), 1, $totalePiatti, $codiceCameriere)";
@@ -75,6 +81,9 @@ if (!$orderID) //controllo
 }
 
 //-------------------------------------
+
+//contatore per verificare quanti dettagli sono stati inseriti
+$dettagliInseriti = 0;
 
 //inserimento nei dettagli della comanda
 foreach($piatti as $piatto) 
@@ -103,12 +112,22 @@ foreach($piatti as $piatto)
         {
             die("Errore nell'inserimento del dettaglio della comanda: " . $conn->error);
         }
+        $dettagliInseriti++;
     } 
     else 
     {
         //se il piatto non viene trovato
         die("Errore: piatto '$nomePiatto' non trovato nel database.");
     }
+}
+
+//verifico che almeno un dettaglio sia stato inserito
+if ($dettagliInseriti === 0) 
+{
+    //se non ci sono dettagli, elimino la comanda appena creata
+    $sqlDeleteComanda = "DELETE FROM comanda WHERE ID_Comanda = $orderID";
+    $conn->query($sqlDeleteComanda);
+    die("Errore: nessun dettaglio valido inserito. La comanda è stata annullata.");
 }
 
 header("Location: comande.php?id=" . $orderID);
