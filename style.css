@@ -19,7 +19,7 @@ body
 
 /* -------------------------------------------- */
 
-/* Per il pulsante annulla */
+/* Per il pulsante annulla comanda */
 
 .pulsante-annulla 
 {
@@ -35,6 +35,24 @@ body
 .pulsante-annulla:hover 
 {
     background-color: #cc0000;
+}
+
+/* Per il pulsante annulla singolo piatto */
+.pulsante-annulla-piatto 
+{
+    background-color: #ff8800;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: auto;
+}
+
+.pulsante-annulla-piatto:hover 
+{
+    background-color: #cc6600;
 }
 
 /* -------------------------------------------- */

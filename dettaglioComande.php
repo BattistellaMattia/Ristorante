@@ -32,6 +32,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_comanda']))
     exit();
 }
 
+// Gestione eliminazione singolo piatto
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_piatto'])) 
+{
+    $id_dettaglio = isset($_POST['id_dettaglio']) ? intval($_POST['id_dettaglio']) : null;
+    
+    if ($id_dettaglio) {
+        // Elimino il singolo dettaglio
+        $sql_delete_piatto = "DELETE FROM dettaglio_comanda WHERE ID_Dettaglio = $id_dettaglio AND ID_Comanda = $id_comanda";
+        if (!$conn->query($sql_delete_piatto)) 
+        {
+            die("Errore nell'eliminazione del piatto: " . $conn->error);
+        }
+        
+        // Controllo se ci sono ancora piatti nella comanda
+        $sql_check = "SELECT COUNT(*) as count FROM dettaglio_comanda WHERE ID_Comanda = $id_comanda";
+        $result_check = $conn->query($sql_check);
+        $row_check = $result_check->fetch_assoc();
+        
+        // Se non ci sono più piatti, elimino anche la comanda
+        if ($row_check['count'] == 0) {
+            $sql_delete_comanda = "DELETE FROM comanda WHERE ID_Comanda = $id_comanda";
+            $conn->query($sql_delete_comanda);
+            header("Location: comande.php");
+            exit();
+        }
+        
+        // Redirect per aggiornare la pagina
+        header("Location: dettaglioComande.php?id=$id_comanda");
+        exit();
+    }
+}
+
 // Gestione toggle stato
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['toggle_stato'])) 
 {
@@ -129,7 +161,7 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
             <!-- Form per eliminare la comanda -->
             <form method = "POST" action = "dettaglioComande.php?id=<?php echo $id_comanda; ?>" onsubmit="return confirm('Sei sicuro di voler rimuovere questa comanda?');">
                 <input type = "hidden" name = "delete_comanda" value = "1">
-                <button type = "submit" class = "pulsante-annulla"> ANNULLA COMANDA </button>
+                <button type = "submit" class = "pulsante-annulla"> ANNULLA TUTTA LA COMANDA </button>
             </form>
 
         </div>
@@ -144,6 +176,7 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
                 <th>Prezzo</th>
                 <th>Quantita</th>
                 <th>Numero di uscita</th>
+                <th>Azioni</th>
             </tr>
             <?php foreach ($result as $row): ?>
                 <tr>
@@ -154,12 +187,19 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
                     <td><?php echo number_format($row['Prezzo'], 2, ',', '.'); ?> €</td>
                     <td><?php echo $row['Quantita']; ?></td>
                     <td><?php echo $row['Numero_Uscita']; ?></td>
+                    <td>
+                        <form method="POST" action="dettaglioComande.php?id=<?php echo $id_comanda; ?>" onsubmit="return confirm('Sei sicuro di voler rimuovere questo piatto?');">
+                            <input type="hidden" name="id_dettaglio" value="<?php echo $row['ID_Dettaglio']; ?>">
+                            <input type="hidden" name="delete_piatto" value="1">
+                            <button type="submit" class="pulsante-annulla-piatto">ANNULLA</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
 
             <!-- Riga per il totale -->
             <tr class="totale">
-                <td colspan="3">Totale Prezzo</td>
+                <td colspan="4">Totale Prezzo</td>
                 <td><?php echo number_format($totale_prezzo, 2, ',', '.'); ?> €</td>
                 <td colspan="3"></td>
             </tr>
@@ -176,6 +216,13 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
                 <div><span>Prezzo:</span> <?php echo number_format($row['Prezzo'], 2, ',', '.'); ?> €</div>
                 <div><span>Quantita:</span> <?php echo $row['Quantita']; ?></div>
                 <div><span>Numero di uscita:</span> <?php echo $row['Numero_Uscita']; ?></div>
+                <div class="button-container">
+                    <form method="POST" action="dettaglioComande.php?id=<?php echo $id_comanda; ?>" onsubmit="return confirm('Sei sicuro di voler rimuovere questo piatto?');">
+                        <input type="hidden" name="id_dettaglio" value="<?php echo $row['ID_Dettaglio']; ?>">
+                        <input type="hidden" name="delete_piatto" value="1">
+                        <button type="submit" class="pulsante-annulla-piatto">ANNULLA</button>
+                    </form>
+                </div>
             </div>
         <?php endforeach; ?>
 
@@ -189,5 +236,3 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
 </body>
 
 <?php $conn->close(); ?>
-
-</html>

@@ -1,5 +1,7 @@
 <?php
-session_start(); //avvio una sessione
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); //avvio una sessione solo se non è già attiva
+}
 $timeout = 900; //imposto il timer a 15 min
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== "OK") //se l'utente non è autenticato
