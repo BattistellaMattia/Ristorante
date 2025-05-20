@@ -37,7 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_piatto']))
 {
     $id_dettaglio = isset($_POST['id_dettaglio']) ? intval($_POST['id_dettaglio']) : null;
     
-    if ($id_dettaglio) {
+    if ($id_dettaglio) 
+    {
         // Elimino il singolo dettaglio
         $sql_delete_piatto = "DELETE FROM dettaglio_comanda WHERE ID_Dettaglio = $id_dettaglio AND ID_Comanda = $id_comanda";
         if (!$conn->query($sql_delete_piatto)) 
@@ -51,11 +52,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_piatto']))
         $row_check = $result_check->fetch_assoc();
         
         // Se non ci sono più piatti, elimino anche la comanda
-        if ($row_check['count'] == 0) {
+        if ($row_check['count'] == 0) 
+        {
             $sql_delete_comanda = "DELETE FROM comanda WHERE ID_Comanda = $id_comanda";
             $conn->query($sql_delete_comanda);
             header("Location: comande.php");
             exit();
+        }
+        
+        // Redirect per aggiornare la pagina
+        header("Location: dettaglioComande.php?id=$id_comanda");
+        exit();
+    }
+}
+
+// Gestione modifica piatto
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_piatto'])) 
+{
+    $id_dettaglio = isset($_POST['id_dettaglio']) ? intval($_POST['id_dettaglio']) : null;
+    $quantita = isset($_POST['quantita']) ? intval($_POST['quantita']) : 1;
+    $numero_uscita = isset($_POST['numero_uscita']) ? intval($_POST['numero_uscita']) : 1;
+    
+    if ($id_dettaglio) 
+    {
+        // Aggiorno i dati del piatto
+        $sql_update_piatto = "UPDATE dettaglio_comanda SET Quantita = $quantita, Numero_Uscita = $numero_uscita 
+                              WHERE ID_Dettaglio = $id_dettaglio AND ID_Comanda = $id_comanda";
+        
+        if (!$conn->query($sql_update_piatto)) 
+        {
+            die("Errore nell'aggiornamento del piatto: " . $conn->error);
         }
         
         // Redirect per aggiornare la pagina
@@ -187,7 +213,11 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
                     <td><?php echo number_format($row['Prezzo'], 2, ',', '.'); ?> €</td>
                     <td><?php echo $row['Quantita']; ?></td>
                     <td><?php echo $row['Numero_Uscita']; ?></td>
-                    <td>
+                    <td class="azioni-container">
+                        <!-- Pulsante MODIFICA -->
+                        <button type="button" class="pulsante-modifica" onclick="apriModalModifica(<?php echo $row['ID_Dettaglio']; ?>, '<?php echo $row['Descrizione_Piatto']; ?>', <?php echo $row['Quantita']; ?>, <?php echo $row['Numero_Uscita']; ?>)">MODIFICA</button>
+                        
+                        <!-- Pulsante ANNULLA -->
                         <form method="POST" action="dettaglioComande.php?id=<?php echo $id_comanda; ?>" onsubmit="return confirm('Sei sicuro di voler rimuovere questo piatto?');">
                             <input type="hidden" name="id_dettaglio" value="<?php echo $row['ID_Dettaglio']; ?>">
                             <input type="hidden" name="delete_piatto" value="1">
@@ -217,6 +247,10 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
                 <div><span>Quantita:</span> <?php echo $row['Quantita']; ?></div>
                 <div><span>Numero di uscita:</span> <?php echo $row['Numero_Uscita']; ?></div>
                 <div class="button-container">
+                    <!-- Pulsante MODIFICA per mobile -->
+                    <button type="button" class="pulsante-modifica" onclick="apriModalModifica(<?php echo $row['ID_Dettaglio']; ?>, '<?php echo $row['Descrizione_Piatto']; ?>', <?php echo $row['Quantita']; ?>, <?php echo $row['Numero_Uscita']; ?>)">MODIFICA</button>
+                    
+                    <!-- Pulsante ANNULLA per mobile -->
                     <form method="POST" action="dettaglioComande.php?id=<?php echo $id_comanda; ?>" onsubmit="return confirm('Sei sicuro di voler rimuovere questo piatto?');">
                         <input type="hidden" name="id_dettaglio" value="<?php echo $row['ID_Dettaglio']; ?>">
                         <input type="hidden" name="delete_piatto" value="1">
@@ -232,7 +266,57 @@ ksort($dettagli_per_uscita); // Ordinamento per numero di uscita
         </div>
 
         <a href="comande.php" class="pulsanteRitorno">Torna Indietro</a>
+        <!-- Modal per la modifica del piatto -->
+        <div id="modalModifica" class="modal">
+            <div class="modal-content">
+                <h2 id="titoloPiatto">Modifica Piatto</h2>
+                <form id="formModifica" method="POST" action="dettaglioComande.php?id=<?php echo $id_comanda; ?>">
+                    <input type="hidden" name="id_dettaglio" id="id_dettaglio">
+                    <input type="hidden" name="update_piatto" value="1">
+                    
+                    <div class="form-group">
+                        <label for="quantita">Quantità:</label>
+                        <input type="number" id="quantita" name="quantita" min="1" value="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="numero_uscita">Numero di Uscita:</label>
+                        <input type="number" id="numero_uscita" name="numero_uscita" min="1" value="1" required>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button type="button" class="pulsante-annulla-modifica" onclick="chiudiModal()">Annulla</button>
+                        <button type="submit" class="pulsante-salva">Salva Modifiche</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+    
+    <script>
+        // Funzioni per gestire il modal
+        function apriModalModifica(id, nomePiatto, quantita, numeroUscita) {
+            document.getElementById('titoloPiatto').textContent = 'Modifica ' + nomePiatto;
+            document.getElementById('id_dettaglio').value = id;
+            document.getElementById('quantita').value = quantita;
+            document.getElementById('numero_uscita').value = numeroUscita;
+            document.getElementById('modalModifica').style.display = 'block';
+        }
+        
+        function chiudiModal() {
+            document.getElementById('modalModifica').style.display = 'none';
+        }
+        
+        // Chiudi il modal se si clicca fuori da esso
+        window.onclick = function(event) {
+            var modal = document.getElementById('modalModifica');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 
 <?php $conn->close(); ?>
+
+</html>
