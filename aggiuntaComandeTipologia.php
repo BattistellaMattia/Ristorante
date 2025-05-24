@@ -29,10 +29,15 @@ if ($resetRecap) {
     $_SESSION['recap_comanda'] = "";
 }
 
-// Se arriva un nuovo recap dal menu, lo aggiungiamo a quello esistente
-if (isset($_GET['recap']) && !empty($_GET['recap'])) {
-    // Aggiungiamo il nuovo recap a quello esistente in sessione
-    $_SESSION['recap_comanda'] .= $_GET['recap'];
+if (isset($_GET['recap']) && !empty($_GET['recap'])) 
+{
+    $parts = explode(" - ", $_GET['recap']);
+    if (count($parts) === 2) 
+    {
+        $piatto = trim($parts[0]);
+        $quantita = trim($parts[1]);
+        $_SESSION['recap_comanda'] .= "$quantita x $piatto\n";
+    }
 }
 
 // Gestione della cancellazione del recap

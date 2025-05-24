@@ -13,21 +13,15 @@ $numero_uscita = isset($_POST['numero_uscita']) ? intval($_POST['numero_uscita']
 $numero_tavolo = isset($_POST['numero_tavolo']) ? intval($_POST['numero_tavolo']) : 0;
 
 
-//il recap è per esempio: "Ravioli cinesi al vapore - 2"
-$linee = explode("\n", $recap);
-$totalePiatti = 0;  //totale delle quantità (da usare per Numero_Coperti)
-$piatti = array(); //array per tenere i dettagli di ciascun piatto
-
 foreach ($linee as $linea) 
 {
     $linea = trim($linea);
-
-    //esplodo la riga nel formato "NomePiatto - Quantità"
-    $parti = explode(" - ", $linea);
-    if (count($parti) == 2) 
+    
+    $parti = explode(" x ", $linea);
+    if (count($parti) === 2) 
     {
-        $nomePiatto = trim($parti[0]);
-        $quantita = intval(trim($parti[1]));
+        $quantita = intval(trim($parti[0]));
+        $nomePiatto = trim($parti[1]);
         $totalePiatti += $quantita;
         $piatti[] = array("nomePiatto" => $nomePiatto, "quantita" => $quantita);
     }

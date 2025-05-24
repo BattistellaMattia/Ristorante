@@ -27,7 +27,7 @@ if(isset($_POST['aggiungi']))
         {
             if($quantita > 0) 
             {
-                $recap .= $piatto . " - " . $quantita . "\n";
+                $recap .= $quantita . " x " . $piatto . "\n";
             }
         }
     }
