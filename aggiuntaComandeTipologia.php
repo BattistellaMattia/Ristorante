@@ -4,8 +4,28 @@
 include "database.php";
 include "controlloLogin.php";
 
-// Inizializza o recupera la sessione del recap
-if (!isset($_SESSION['recap_comanda'])) {
+$resetRecap = false;
+
+// Verifica se la pagina è stata aperta senza parametri GET 'recap' 
+// e se proviene da comande.php o dalla stessa pagina (dopo un'azione)
+if (isset($_SERVER['HTTP_REFERER'])) 
+{
+    $referer = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+    $refererPage = basename($referer);
+    
+    // Reset se arrivi da comande.php o da una ricarica della pagina (senza 'recap')
+    if (in_array($refererPage, ['comande.php', 'aggiuntaComandeTipologia.php']) && !isset($_GET['recap'])) 
+    {
+        $resetRecap = true;
+    }
+} else 
+{
+    // Se non c'è referer (es. accesso diretto), resetta
+    $resetRecap = true;
+}
+
+// Svuota il recap se necessario
+if ($resetRecap) {
     $_SESSION['recap_comanda'] = "";
 }
 
@@ -36,14 +56,6 @@ if (isset($_GET['clear_recap']) && $_GET['clear_recap'] == 'true') {
 
         <div class="tipologia-container">
 
-            <h1>Seleziona Tipologia Piatto</h1>
-            
-            <?php if (!empty($_SESSION['recap_comanda'])): ?>
-            <div class="status-message">
-                <p>Stai componendo una comanda con più piatti. Puoi continuare ad aggiungere piatti o finalizzare la comanda.</p>
-            </div>
-            <?php endif; ?>
-
             <?php
             $sql = "SELECT ID_Tipologia, Descrizione_Tipologia FROM tipologia_piatto";
             $result = $conn->query($sql);
@@ -68,30 +80,38 @@ if (isset($_GET['clear_recap']) && $_GET['clear_recap'] == 'true') {
             <?php endif; ?>
 
             <form method="POST" action="addComanda.php">
-                <label for="recap">Recap dei piatti aggiunti:</label>
-                <textarea id="recap" name="recap" rows="5" cols="50" readonly><?php echo $_SESSION['recap_comanda']; ?></textarea>
-
-                <?php if (!empty($_SESSION['recap_comanda'])): ?>
-                <div class="recap-actions">
-                    <a href="aggiuntaComandeTipologia.php?clear_recap=true">Cancella Comanda</a>
-                </div>
-                <?php endif; ?>
-
-                <label for="nota">Aggiungi una nota alla comanda:</label>
-                <textarea id="nota" name="nota" rows="2" cols="50" placeholder="Scrivi una nota qui..."></textarea>
-
-                <label for="numero_tavolo">Numero del tavolo:</label>
-                <input type="number" id="numero_tavolo" name="numero_tavolo" min="1" placeholder="Inserisci il numero del tavolo" required>
                 
-                <label for="numero_uscita">Numero di uscita:</label>
-                <input type="number" id="numero_uscita" name="numero_uscita" min="1" value="1" placeholder="Inserisci numero di uscita" required>
-
                 <button type="submit" class="pulsanteFineComanda" <?php echo empty($_SESSION['recap_comanda']) ? 'disabled' : ''; ?>>
                     FINE COMANDA
                 </button>
+
+                <a href="comande.php" class="pulsanteRitorno">Torna Indietro</a>
+
+                <label for="recap">Recap dei piatti aggiunti:</label>
+                <textarea id="recap" name="recap" rows="5" cols="50" readonly><?php echo $_SESSION['recap_comanda']; ?></textarea>
+
+                <label for="nota">Aggiungi una nota alla comanda:</label>
+                <textarea id="nota" name="nota" rows="2" cols="50" placeholder="Scrivi una nota qui..."></textarea>
+                
+                <div class="numero-tavolo-container">
+                <label for="numero_tavolo">Numero del tavolo:</label>
+                <input type="number" id="numero_tavolo" name="numero_tavolo" min="1" placeholder="Inserisci il numero del tavolo" required>
+                </div>
+
+                <div class="numero-tavolo-container">
+                <label for="numero_uscita">Numero di uscita:</label>
+                <input type="number" id="numero_uscita" name="numero_uscita" min="1" value="1" placeholder="Inserisci numero di uscita" required>
+                </div>
+            
+
+                <?php if (!empty($_SESSION['recap_comanda'])): ?>
+                <div class="recap-actions">
+                    <a href="aggiuntaComandeTipologia.php?clear_recap=true" class="pulsante-cancella-comanda">Cancella Comanda</a>
+                </div>
+                <?php endif; ?>
+
             </form>
 
-            <a href="comande.php" class="pulsanteRitorno">Torna Indietro</a>
         </div>
     </body>
 

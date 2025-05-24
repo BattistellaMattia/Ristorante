@@ -22,20 +22,27 @@ include "controlloLogin.php";
         <a href = "logout.php"> Logout </a>
 
         <!-- Form per filtrare lo stato e le date delle comande -->
-        <form action="comande.php" method="post">
-            <select name="Filtri">
-                <option value=""> Tutte </option>
-                <option value="1"> Attive </option>
-                <option value="0"> Concluse </option>
-            </select>
+        <<form action="comande.php" method="post" class="form-filtri">
+            <div class="filtri-container">
+                <select name="Filtri">
+                    <option value=""> Tutte </option>
+                    <option value="1"> Attive </option>
+                    <option value="0"> Concluse </option>
+                </select>
 
-            <label for="data_inizio">Da:</label>
-            <input type="date" id="data_inizio" name="data_inizio">
+                <div class="filtro-data">
+                    <div class="data-group">
+                        <label for="data_inizio">Da:</label>
+                        <input type="date" id="data_inizio" name="data_inizio" class="date-input">
+                    </div>
+                    <div class="data-group">
+                        <label for="data_fine">A:</label>
+                        <input type="date" id="data_fine" name="data_fine" class="date-input">
+                    </div>
+                </div>
 
-            <label for="data_fine">A:</label>
-            <input type="date" id="data_fine" name="data_fine">
-
-            <input type="submit" value="Cerca">
+            <input type="submit" value="Cerca" class="pulsante-cerca">
+            </div>
         </form>
 
         <!-- pulsante che apre la pagina 'aggiuntaComandeTipologia' per iniziare a creare una nuova comanda -->
