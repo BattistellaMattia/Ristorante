@@ -18,11 +18,13 @@ include "controlloLogin.php";
     
     <div class = "comande">
 
-        <h2> Benvenuto, <?php echo $_SESSION['nome']; ?> ! </h2>
-        <a href = "logout.php"> Logout </a>
+        <div class="benvenuto-logout">
+            <h2> Benvenuto, <?php echo $_SESSION['nome']; ?> ! </h2>
+            <a href = "logout.php" class="logout-link"> Logout </a>
+        </div>
 
         <!-- Form per filtrare lo stato e le date delle comande -->
-        <<form action="comande.php" method="post" class="form-filtri">
+        <form action="comande.php" method="post" class="form-filtri">
             <div class="filtri-container">
                 <select name="Filtri">
                     <option value=""> Tutte </option>

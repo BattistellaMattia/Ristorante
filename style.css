@@ -139,13 +139,14 @@ body
 {
     background-color: #17a2b8;
     color: white;
-    padding: 3px 8px; 
-    border: none;
-    border-radius: 4px;
+    padding: 5px 10px !important; 
+    border: none !important;
+    border-radius: 5px !important;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.9rem !important;
     width: auto;
     margin-right: 5px;
+    height: auto;
 }
             
 .pulsante-modifica:hover 
@@ -399,12 +400,12 @@ form textarea::placeholder
 {
     background-color: #28a745;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 0.8rem 2rem;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    width: 80%;
+    width: 85%;
     max-width: 300px;
     text-transform: uppercase;
 }
@@ -601,8 +602,9 @@ button:hover
     .pulsanteFineComanda,
     .pulsanteRitorno 
     {
-        font-size: 1rem;
+        font-size: 1.2rem;
         padding: 0.8rem;
+        margin-top: -1rem;
         text-align: center;
     }
 
@@ -671,18 +673,49 @@ button:hover
         width: 100%;
         justify-content: space-between;
     }
+
+    .comande .row button.pulsante-modifica 
+    {
+        padding: 5px 10px !important;
+        font-size: 0.9rem !important;
+        border-radius: 5px !important;
+        margin: 0.5rem; 
+    }
+
 }
 
 @media (min-width: 1024px) 
 {
     .comande 
     {
-        max-width: 70%;
+        max-width: 80%;
     }
 
     table 
     {
-        font-size: 1.1rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
+    }
+
+    .benvenuto-logout 
+    {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .logout-link 
+    {
+        display: block;
+        color: #dc3545;
+        text-decoration: none;
+        margin-top: 0.5rem;
+    }
+
+    .logout-link:hover 
+    {
+        text-decoration: underline;
     }
 
     .comande .row 
