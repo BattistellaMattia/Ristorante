@@ -49,6 +49,79 @@ body
 
 /* -------------------------------------------- */
 
+/* Stili per i controlli dei piatti */
+.piatto-controls 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 1rem;
+}
+
+.container-contatore
+{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.label-contatore 
+{
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    margin-right: 0.5rem;
+}
+
+.container-contatore button 
+{
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.container-contatore .contatore 
+{
+    font-size: 1rem;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+}
+
+.container-uscita 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.label-uscita 
+{
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.input-uscita 
+{
+    width: 60px;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* -------------------------------------------- */
+
 .modal 
 {
     display: none;
@@ -851,7 +924,7 @@ button:hover
     border: 1px solid #b1a6a6;
     border-radius: 0.5rem;
     padding: 1rem;
-    width: 90%; 
+    width: 100%; 
     max-width: 800px; 
     display: flex;
     align-items: center;
@@ -865,7 +938,7 @@ button:hover
 {
     font-size: 1.3rem; 
     margin-bottom: 0.5rem;
-    margin-right: 0.5rem;
+    margin-right: 0.3rem;
     text-align: center;
     margin: 0 auto;
     color: #1e59c6;

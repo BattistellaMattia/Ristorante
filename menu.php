@@ -27,7 +27,9 @@ if(isset($_POST['aggiungi']))
         {
             if($quantita > 0) 
             {
-                $recap .= $quantita . " x " . $piatto . "\n";
+                // Recupera il numero di uscita per questo piatto
+                $numero_uscita = isset($_POST['N_uscita'][$piatto]) ? intval($_POST['N_uscita'][$piatto]) : 1;
+                $recap .= $quantita . " x " . $piatto . " (Uscita: " . $numero_uscita . ")\n";
             }
         }
     }
@@ -122,13 +124,29 @@ if(isset($_POST['aggiungi']))
                         echo "<div class='menu-item'>";
                         echo "<h2>" . htmlspecialchars($row['Descrizione_Piatto']) . "</h2>";
 
+                        echo "<div class='piatto-controls'>";
+                        
+                        // Contatore quantità
                         echo "<div class='container-contatore'>";
+                        echo "<span class='label-contatore'>Quantità:</span>";
                         echo "<button type = 'button' class='decremento' onclick='aggiornaContatore(this, false)' style='background-color: red; color: white;'>-</button>";
                         echo "<input type='number' name='N_piatti[" . htmlspecialchars($row['Descrizione_Piatto']) . "]' value='0' min='0' style='width: 40px; text-align: center;'>";
                         echo "<button type = 'button' class='incremento' onclick='aggiornaContatore(this, true)' style='background-color: green; color: white;'>+</button>";
                         echo "</div>";
 
-                        echo "<p>€ " . number_format($row['Prezzo'], 2) . "</p>";
+                        echo "<br>";
+
+                        // Input numero uscita
+                        echo "<div class='container-uscita'>";
+                        echo "<label for='uscita_" . htmlspecialchars($row['Descrizione_Piatto']) . "' class='label-uscita'>N°Uscita:</label>";
+                        echo "<input type='number' name='N_uscita[" . htmlspecialchars($row['Descrizione_Piatto']) . "]' id='uscita_" . htmlspecialchars($row['Descrizione_Piatto']) . "' value='1' min='1' class='input-uscita'>";
+                        echo "</div>";
+                        
+                        echo "</div>";
+
+                        echo "<br>";
+                        
+                        echo "<p style = 'margin-left: -4em;'>€" . number_format($row['Prezzo'], 2) . "</p>";
                         echo "</div>";
                     }
                 } 

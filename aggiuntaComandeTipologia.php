@@ -103,12 +103,6 @@ if (isset($_GET['clear_recap']) && $_GET['clear_recap'] == 'true') {
                 <input type="number" id="numero_tavolo" name="numero_tavolo" min="1" placeholder="Inserisci il numero del tavolo" required>
                 </div>
 
-                <div class="numero-tavolo-container">
-                <label for="numero_uscita">Numero di uscita:</label>
-                <input type="number" id="numero_uscita" name="numero_uscita" min="1" value="1" placeholder="Inserisci numero di uscita" required>
-                </div>
-            
-
                 <?php if (!empty($_SESSION['recap_comanda'])): ?>
                 <div class="recap-actions">
                     <a href="aggiuntaComandeTipologia.php?clear_recap=true" class="pulsante-cancella-comanda">Cancella Comanda</a>
